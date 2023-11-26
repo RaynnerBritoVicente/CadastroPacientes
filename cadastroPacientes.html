@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap 5-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Ícones Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Para consultar a lista de ícones, acesse: https://icons.getbootstrap.com/ -->
+  <!-- CSS -->
+  <link href="css/style.css" rel="stylesheet" />
+  <title>Menu Principal</title>
+</head>
+
+<body onload="verificaLogado();carregaPacientes()" class="aplicacaoCadastro">
+    <nav class="navbar navbar-expand-lg navbar-dark bic">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <img id="logoProjeto" class="img-fluid mx-2" src="imgs/IconeCruzEscudo.svg" alt="Logo do Projeto">
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="menu.html"><i class="bi bi-house-fill"></i> Início</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-file-spreadsheet-fill"></i> Cadastro de Paciêntes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contato</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+                <div id="imagemUsuario">
+                    
+                </div>
+              <button class="btn btn-danger" type="button" onclick="logoutFirebase()">
+                <i class="bi bi-box-arrow-right"></i> Logout</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+              <!-- Formulário -->
+              <h4 class="text-black-25 text-center mt-3">Cadastro de Pacientes</h4>
+              <form id="formCadastroPacientes" method="post" class="rounded shadow-lg bg-white p-3">
+                <div class="row">
+                  <!-- Nome do Paciênte -->
+                  <div class="mb-3">
+                      <label for="nomePaciente" class="form-label">Nome do Paciênte</label>
+                      <input type="text" class="form-control" id="nomePaciente" name="nomePaciente" placeholder="Nome do Paciênte" autofocus
+                      required />
+                  </div>
+                  <!-- Gênero -->
+                  <div class="col-6 mb-3">
+                    <label for="genero" class="form-label">Gênero</label>
+                    <select class="form-select" name="genero" id="genero">
+                      <option value="X" disabled selected>Selecione uma opção...</option>
+                      <option value="MC">Masculino Cisgênero</option>
+                      <option value="MT">Masculino Transgênero</option>
+                      <option value="FC">Feminino Cisgênero</option>
+                      <option value="FT">Feminino Transgênero</option>
+                      <option value="Z">Ignorar</option>
+                    </select>
+                  </div>
+                  <!-- Data de nascimento -->
+                  <div class="col-6 mb-3">
+                    <label for="dataNasc" class="form-label">Data de Nascimento</label>
+                    <input type="date" class="form-control" id="dataNasc" name="dataNasc" placeholder="DD/MM/AAAA"
+                    required />
+                  </div>
+                  <!-- Tipo Sanguineo -->
+                  <div class="mb-3">
+                    <label for="tipoSangue" class="form-label">Tipo Sanguíneo</label>
+                    <select class="form-select" name="tipoSangue" id="tipoSangue">
+                      <option value="X" disabled selected>Selecione um tipo Sanguineo...</option>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                    </select>
+                  </div>
+                  <!-- RG -->
+                  <div class="col-6 mb-3">
+                      <label for="rg" class="form-label">RG</label>
+                      <input type="text" class="form-control" id="rg" name="rg" required placeholder="Ex: 000000000"
+                      maxlength="9" pattern="[0-9]{9}" title="Informe o seu RG" />
+                  </div>
+                  <!-- CPF -->
+                  <div class="col-6 mb-3">
+                      <label for="cpf" class="form-label">CPF</label>
+                      <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Ex: 00000000000"
+                      maxlength="11" pattern="[0-9]{11}" title="Informe o seu CPF" />
+                  </div>
+                  <!-- CEP -->
+                  <div class="mb-3">
+                      <label for="cep" class="form-label">CEP</label>
+                      <input type="text" class="form-control" id="cep" name="cep" required placeholder="Ex: 13309320"
+                      maxlength="8" pattern="[0-9]{8}" title="Informe o CEP no formato 99999999" />
+                      <div class="spinner-border text-primary d-none" id="spinner"></div>
+                  </div>
+                  <!-- Estado -->
+                  <div class="col mb-3">
+                      <label for="estado" class="form-label">Estado</label>
+                      <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado onde Reside"
+                      required />
+                  </div>
+                  <!-- Municipio -->
+                  <div class="col mb-3">
+                      <label for="municipio" class="form-label">Município</label>
+                      <input type="text" class="form-control" id="municipio" name="municipio" placeholder="Município onde reside"
+                      required />
+                  </div>
+                  <!-- Logradouro -->
+                  <div class="mb-3">
+                      <label for="logradouro" class="form-label">Logradouro</label>
+                      <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Bairro e Rua onde reside"
+                      required />
+                  </div>
+                  <!-- Observações -->
+                  <div class="mb-3">
+                    <label for="obs" class="form-label">Observações</label>
+                    <textarea class="form-control" id="obs" name="obs" rows="7"></textarea>
+                  </div>
+                  <!-- Botões-->
+                  <div class="my-3">
+                      <button class="btn btn-success" id="salvar" type="submit">
+                      <i class="bi bi-save"></i> Salvar
+                      </button>
+                      <button class="btn btn-danger" id="limpar" type="reset">
+                      <i class="bi bi-x"></i> Limpar
+                      </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <h4 class="text-black-25 text-center mt-3">Relação de Pacientes</h4>
+        <table class="table table-bordered shadow-lg">
+          <thead>
+            <tr class="table-primary">
+              <th>Nome</th>
+              <th>Genero</th>
+              <th>Data de Nascimento</th>
+              <th>Tipo Sanguíneo</th>
+              <th>Documentos</th>
+              <th>CEP</th>
+              <th>Localização</th>
+              <th>Observações</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="dadosTabela"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<!-- Rodapé -->
+<footer class="footer fixed-bottom bic text-white text-center">
+  <div class="container my-2">
+    &copy; 2023 Fatec Itu - Todos os direitos reservados
+  </div>
+</footer>
+  <!-- Carregando os scripts do Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-storage-compat.js"></script>
+  <!--script do projeto -->
+  <script src="js/firebase.js"></script>
+  <script src="js/util.js"></script>
+  <script>
+    //obtendo a referência ao campo
+    const cepInput = document.getElementById('cep')
+    const spinner = document.getElementById('spinner')
+    const estadoInput = document.getElementById('estado')
+    const municipioInput = document.getElementById('municipio')
+    const logradouroInput = document.getElementById('logradouro')
+    
+    //adicionando o evento de escuta no cep
+    cepInput.addEventListener('blur', function () {
+      //mostrar o spinner
+      spinner.classList.remove('d-none')
+      //consultando o cep
+      const cepValue = cepInput.value
+      getCEP(cepValue, (erro, estado, municipio, logradouro) => {
+        //Após a resposta, remove o spinner
+        spinner.classList.add('d-none')
+        if (erro) {
+          alert(erro)
+        } else {
+          estadoInput.value = estado
+          municipioInput.value = municipio
+          logradouroInput.value = logradouro
+        }
+      })
+      //mudar o foco para o botão salvar
+      document.getElementById('salvar').focus()
+    })
+  </script>
+</body>
+
+</html>

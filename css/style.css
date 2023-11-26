@@ -1,0 +1,38 @@
+/* Estilo do Projeto */
+.login{
+    width: 100%;
+    height: 100vh; /* viewport - porta de visualização */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #FFFFFF, #2469DB);
+}
+
+.aplicacaoMenu{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom right , #9fa8ba 10%, #2469DB 100%);
+}
+
+.aplicacaoCadastro{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right , #9fa8ba 10%, #2469DB 100%);
+}
+
+.azulClaro{
+    background-color: #2469DB;
+}
+
+.bic{
+    background-color: #1447E6;
+}
+
+.cinza{
+    background-color: #383838;
+}
+
+#logoProjeto{
+    width: 5rem;
+}
