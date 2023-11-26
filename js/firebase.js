@@ -53,6 +53,21 @@ function logoutFirebase(){
   })
 }
 
+// Em manutenção...
+async function salvaUsuario(usuario) {
+  //evento submit do formulário
+  document.getElementById('formCadastroUser').addEventListener('submit', function (event){
+    event.preventDefault()
+    const usuario = {
+      nomeUsuario: document.getElementById('nomeUsuario').value,
+      senhaUser: document.getElementById('senha').value,
+      especialidade: document.getElementById('especialidade').value
+    }
+    salvaUsuario(usuario)
+    window.location.href = 'index.html'
+  })
+}
+
 async function salvaPaciente(paciente) {
   //obtendo o usuário atual
   let usuarioAtual = firebase.auth().currentUser

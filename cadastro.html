@@ -1,3 +1,4 @@
+<!-- PÁGINA EM MANUTENÇÃO -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -31,39 +32,38 @@
 
                         <form id="formCadastroUser" method="post" class="shadow-lg p-3">
                             <div class="row">
+                                <!-- Nome do Usuário -->
                                 <div class="mb-2">
-                                    <label for="email" class="form-label">Nome de Usuário</label>
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="Nome de Exibição" autofocus
+                                    <label for="nomeUsuario" class="form-label">Nome de Usuário</label>
+                                    <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" placeholder="Nome de Login" autofocus
                                       required />
                                 </div>
-                                <div class="col mb-2">
+                                <!-- Senha de Acesso -->
+                                <div class="mb-2">
                                     <label for="senha" class="form-label">Senha de Acesso</label>
                                     <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha de Acesso" autofocus
                                       required />
                                 </div>
-                                <div class="col mb-2">
-                                    <label for="senha2" class="form-label">Confirmar Senha</label>
-                                    <input type="password" class="form-control" id="senha2" name="senha2" placeholder="Repita a senha de acesso" autofocus required />
-                                </div>
+                                <!-- Especialidade -->
                                 <div class="mb-2">
                                     <label for="especialidade" class="form-label">Especialidade</label>
                                     <select class="form-select" id="especialidade" name="especialidade">
                                         <option value="0" disabled selected>Selecione uma Especialidade...</option>
-                                        <option value="1">Pediatria</option>
-                                        <option value="2">Oftalmologia</option>
-                                        <option value="3">Neurologia</option>
-                                        <option value="4">Clinico</option>
-                                        <option value="5">Uncologia</option>
-                                        <option value="6">Ultrasonografia</option>
-                                        <option value="7">Patologista</option>
-                                        <option value="8">Cardiologista</option>
+                                        <option value="Pediatria">Pediatria</option>
+                                        <option value="Oftalmologia">Oftalmologia</option>
+                                        <option value="Neurologia">Neurologia</option>
+                                        <option value="Clinico">Clinico</option>
+                                        <option value="Uncologia">Uncologia</option>
+                                        <option value="Ultrasonografia">Ultrasonografia</option>
+                                        <option value="Patologista">Patologista</option>
+                                        <option value="Cardiologista">Cardiologista</option>
                                       </select>
                                 </div>
                             </div>
                         </form>
 
-                        <button type="submit" class="col-12 btn btn-success my-2" title="Login Google" >
-                            <i class="bi bi-file-earmark-person"></i> Realizar cadastro
+                        <button type="submit" id="salvar" class="col-12 btn btn-success my-2" title="Salvar Login" >
+                            <i class="bi bi-file-earmark-person"></i> Salvar cadastro
                         </button>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-storage-compat.js"></script>
     <!--script do projeto -->        
-    <script src="js/firebase.js"></script>    
+    <script src="js/firebase.js"></script>
 </body>
 
 </html>
